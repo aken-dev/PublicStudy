@@ -118,13 +118,13 @@ class BoiledWater {
 		System.out.println(sec + " 秒 待ちました。");
 	}
 }
- class HotCoffee implements CoffeeMaker{
+ class CoffeeBase implements CoffeeMaker{
 	int water_temperature;
 	int water_ml;
 	int grind_level;
 	int beans_g;
 
-	 HotCoffee(int water_temperature, int water_ml,	int grind_level, int beans_g) {
+	 CoffeeBase(int water_temperature, int water_ml, int grind_level, int beans_g) {
 		this.water_temperature = water_temperature;
 		this.water_ml = water_ml;
 		this.grind_level = grind_level;
@@ -139,8 +139,12 @@ class BoiledWater {
 		return liquid;
 	}
 }
-
- class IcedCoffee extends HotCoffee {
+ class HotCoffee extends CoffeeBase {
+	 HotCoffee(int water_temperature, int water_ml, int grind_level, int beans_g){
+		 super(water_temperature, water_ml, grind_level, beans_g);
+	 }
+ }
+ class IcedCoffee extends CoffeeBase {
 	int ice;
 	IcedCoffee(int water_temperature, int water_ml,	int grind_level, int beans_g,int ice){
 		super(water_temperature, water_ml,	grind_level, beans_g);
@@ -155,7 +159,7 @@ class BoiledWater {
 	}
 }
 
- class CoffeeJelly extends HotCoffee {
+ class CoffeeJelly extends CoffeeBase {
 	int ice;
 	int sugar;
 	int gelatin;
